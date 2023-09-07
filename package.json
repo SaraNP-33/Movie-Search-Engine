@@ -1,0 +1,29 @@
+{
+  "name": "google-books",
+  "version": "1.0.0",
+  "description": "An application using GraphQL and ApolloServer to handle the user's actions.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SaraNP-33/google-books.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SaraNP-33/google-books/issues"
+  },
+  "homepage": "https://github.com/SaraNP-33/google-books#readme",
+  "dependencies": {
+    "@apollo/server": "^4.9.3",
+    "bcrypt": "^5.1.1",
+    "concurrently": "^8.2.1",
+    "express": "^4.18.2",
+    "graphql": "^16.8.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^7.5.0"
+  }
+}
