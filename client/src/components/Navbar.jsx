@@ -1,11 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import { Modal } from 'react-bootstrap/Modal';
-import { Tab } from 'react-bootstrap/Tab';
-
+import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
+import LoginForm from './LoginForm';
+import SignUpForm from './SignupForm';
 
 import Auth from '../utils/auth';
 
@@ -18,7 +15,7 @@ function NavbarApp() {
     <>
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand as={Link} to='/'>Google Book Search Engine</Navbar.Brand>
+        <Navbar.Brand id="brand" as={Link} to='/'>Google Book Search Engine</Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse id="basic-navbar-nav" className='justify-content-end'>
           <Nav>
@@ -60,10 +57,10 @@ function NavbarApp() {
           <Modal.Body>
             <Tab.Content>
               <Tab.Pane eventKey='login'>
-                {/* <LoginForm handleModalClose={() => setShowModal(false)} /> */}
+                <LoginForm handleModalClose={() => setShowModal(false)} />
               </Tab.Pane>
               <Tab.Pane eventKey='signup'>
-                {/* <SignUpForm handleModalClose={() => setShowModal(false)} /> */}
+                <SignUpForm handleModalClose={() => setShowModal(false)} />
               </Tab.Pane>
             </Tab.Content>
           </Modal.Body>

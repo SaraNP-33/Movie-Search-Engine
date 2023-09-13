@@ -1,9 +1,12 @@
+import InputSearch from "../components/InputSearch";
 
-
-function SearchBooks (){
-    return(
-        <h1>Search Books</h1>
-    )
+function SearchBooks() {
+  return (
+    <>
+      <InputSearch text={{title: 'Search Books'}}/>
+     
+    </>
+  );
 }
 
 export default SearchBooks;
