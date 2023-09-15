@@ -29,10 +29,27 @@ font-size: 30px;
   padding-bottom: 10px;
 }
 
+/*Input button */
+#input-btn, #login-btn{
+  background-color: #5e3636 !important;
+  border-color: #5e3636;
+}
+
+
 /* Books CARDS */
 
 .truncate{
   text-overflow: ellipsis;
   white-space:nowrap;
   overflow: hidden;
+}
+
+/*Login/ sing-up form*/
+#position-btn{
+  display:flex;
+  justify-content: center;
+}
+
+#login-btn{
+  width:10%;
 }

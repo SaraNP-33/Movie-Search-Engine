@@ -23,7 +23,7 @@ function NavbarApp() {
             {Auth.loggedIn() ? (
                 <>
                  <Nav.Link as={Link} to='/saved'>
-                    Saved Books
+                    Saved Movies
                   </Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>
@@ -46,7 +46,7 @@ function NavbarApp() {
             <Modal.Title id='signup-modal'>
               <Nav variant='pills'>
                 <Nav.Item>
-                  <Nav.Link eventKey='login'>Login</Nav.Link>
+                  <Nav.Link className="tabs" eventKey='login'>Login</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link eventKey='signup'>Sign Up</Nav.Link>
@@ -56,10 +56,10 @@ function NavbarApp() {
           </Modal.Header>
           <Modal.Body>
             <Tab.Content>
-              <Tab.Pane eventKey='login'>
+              <Tab.Pane  eventKey='login'>
                 <LoginForm handleModalClose={() => setShowModal(false)} />
               </Tab.Pane>
-              <Tab.Pane eventKey='signup'>
+              <Tab.Pane  eventKey='signup'>
                 <SignUpForm handleModalClose={() => setShowModal(false)} />
               </Tab.Pane>
             </Tab.Content>

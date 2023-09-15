@@ -58,7 +58,7 @@ function SearchBooks() {
         />
       </Col>
       <Col xs="auto">
-        <Button type="submit">Search</Button>
+        <Button id="input-btn"type="submit">Search</Button>
       </Col>
     </Row>
   </Form>
