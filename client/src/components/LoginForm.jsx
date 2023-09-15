@@ -8,7 +8,7 @@ import Auth from '../utils/auth';
 function LoginForm() {
  const[formData, setFormData]=useState({email:'', password:''})
  console.log(formData);
- const [validate] = useState(false)
+ const [validated] = useState(false)
  const [showAlert, setShowAlert] = useState(false)
 
  const [login, {error}] =useMutation(LOGIN_USER)
@@ -25,13 +25,50 @@ function LoginForm() {
   const {name, value} = event.target;
   setFormData({...formData, [name]: value})
  }
+
+ const handleFormSubmit =async (event) =>{
+  event.preventDefault()
+
+  const form =event.currentTarget;
+  if(form.checkValidity()===false){
+    event.preventDefault()
+    event.stopPropagation();
+  }
+
+  try{
+    const {data} =await login({
+      variables: {...formData}
+    })
+    console.log(data);
+    Auth.login(data.login.token)
+
+  }catch (e) {
+      console.error(e);
+    }
+
+    setFormData({
+      email: '',
+      password: '',
+    });
+
+ }
   return (
     <Container id="login-box">
+      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+        <Alert
+        dismissible
+        onClose={()=>setShowAlert(false)}
+        show={showAlert}
+        variant='danger'
+        >
+          Oops... Something went wrong!
+        </Alert>
         <Form.Group className='mb-3'>
           <Form.Label>Email</Form.Label>
         <Form.Control type="email" placeholder="name@example.com" 
         required
-        onChange={handleInputChange}/>
+        onChange={handleInputChange}
+        value={formData.email}/>
         <Form.Control.Feedback type='invalid'>
           Email is required
         </Form.Control.Feedback>
@@ -40,7 +77,8 @@ function LoginForm() {
         <Form.Label>Password</Form.Label>
         <Form.Control type="password" placeholder="Password" 
         required
-        onChange={handleInputChange}/>
+        onChange={handleInputChange}
+        value={formData.password}/>
         <Form.Control.Feedback type='invalid'>
           Password is required
         </Form.Control.Feedback>
@@ -48,6 +86,7 @@ function LoginForm() {
         <div id="position-btn">
       <Button id="login-btn" className="mt-3"type="submit">Submit</Button>
       </div>
+      </Form>
     </Container>
   );
 }
