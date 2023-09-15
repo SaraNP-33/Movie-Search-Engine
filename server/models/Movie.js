@@ -1,25 +1,25 @@
 const { Schema } = require('mongoose');
 
 
-const bookSchema = new Schema({
-  authors: [
+const movieSchema = new Schema({
+  year: 
     {
       type: String,
     },
-  ],
-  description: {
+  
+  plot: {
     type: String,
     required: true,
   },
 
-  bookId: {
+  movieId: {
     type: String,
     required: true,
   },
-  image: {
+  poster: {
     type: String,
   },
-  link: {
+  genre: {
     type: String,
   },
   title: {
@@ -28,4 +28,4 @@ const bookSchema = new Schema({
   },
 });
 
-module.exports = bookSchema;
+module.exports = movieSchema;

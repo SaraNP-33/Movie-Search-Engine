@@ -4,15 +4,15 @@ const typeDefs = `
     username: String!
     email: String
     bookCount: Int
-    savedBooks: [Book]
+    savedMovies: [Movie]
   }
 
-  type Book {
-    bookId: ID!
-    authors: [String]
-    description: String
-    image: String
-    link: String
+  type Movie {
+    movieId: ID!
+    year: String
+    plot: String
+    poster: String
+    genre: String
     title: String!
   }
 
@@ -21,12 +21,12 @@ const typeDefs = `
     user: User
   }
 
-  input BookInput {
-    authors: [String]
-    description: String!
-    bookId: String!
-    image: String
-    link: String
+  input MovieInput {
+    year: String
+    plot: String!
+    movieId: String!
+    poster: String
+    genre: String
     title: String!
   }
 
@@ -37,8 +37,8 @@ const typeDefs = `
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    saveBook(bookData: BookInput!): User
-    removeBook(bookId: ID!): User
+    saveMovie(movieData: MovieInput!): User
+    removeMovie(MovieId: ID!): User
   }
 `;
 

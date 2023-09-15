@@ -1,8 +1,5 @@
 import { useState } from 'react';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import {Row, Col, Form, Button, Container, Card} from 'react-bootstrap'
 
 
 function SearchBooks() {
@@ -10,6 +7,7 @@ function SearchBooks() {
     const [searchInput, setSearchInput]= useState('')
     const [searchedBooks, setSearchedBooks]=useState([])
     console.log(searchedBooks);
+    //`http://www.omdbapi.com/?s=${searchInput}&apikey=90368331`
 
   const handleSubmit = async (event)=>{
     event.preventDefault()
@@ -19,19 +17,20 @@ function SearchBooks() {
     }
 
     try{
-        const response= await fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchInput}`)
+        const response= await fetch(`http://www.omdbapi.com/?s=${searchInput}&apikey=90368331`)
 
         if(!response.ok){
             throw new Error("uh oh...Something went wrong!")
         }
 
-        const {items}= await response.json()
+        const items= await response.json()
+        const search=items.Search;
 
-        const bookData= items.map((book)=>({
-            bookId: book.id,
-            authors:book.volumeInfo.authors || ['No author to display'],
-            title:book.volumeInfo.description,
-            image:book.volumeInfo.imageLinks?.thumbnail || " "
+        const bookData= search.map((movie)=>({
+            bookId: movie.imdbID,
+            authors:movie.Year || ['No author to display'],
+            title:movie.Title,
+            image:movie.Poster || " "
         }))
     
      setSearchedBooks(bookData);
@@ -64,6 +63,35 @@ function SearchBooks() {
     </Row>
   </Form>
   </div>
+
+  <Container>
+    <h2 className='text-center pt-4'>
+      {searchedBooks.length ? `${searchedBooks.length} results from search:` : ''}  
+    </h2>
+    <Row>
+        {searchedBooks.map((book)=>{
+            return(
+            <Col md='4' key={book.bookId}>
+            <Card>
+                {book.image?(
+                <Card.Img
+                src={book.image}
+                alt={`${book.title} cover`}
+                variant='top'
+                />
+                ): null}
+                <Card.Body className='truncate'>
+                <Card.Title className='pe-3 text-center' >{book.title}</Card.Title>
+                <p className='small text-center'>Movie Year: {book.authors}</p>
+                    
+                </Card.Body>
+            </Card>
+            </Col>
+            )
+        })}
+    </Row>
+
+  </Container>
      
     </>
   );

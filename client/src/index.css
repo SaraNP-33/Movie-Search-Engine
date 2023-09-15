@@ -29,3 +29,11 @@ font-size: 30px;
   color:whitesmoke;
   padding-bottom: 10px;
 }
+
+/* Books CARDS */
+
+.truncate{
+  text-overflow: ellipsis;
+  white-space:nowrap;
+  overflow: hidden;
+}
