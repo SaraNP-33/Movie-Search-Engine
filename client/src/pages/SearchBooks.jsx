@@ -45,13 +45,13 @@ function SearchBooks() {
   return (
     <>
        <div id="hero">
-    <h1>Search Books</h1>
+    <h1>Search Movies</h1>
     <Form inline onSubmit={handleSubmit}>
     <Row>
       <Col xs="auto">
         <Form.Control
           type="text"
-          placeholder="Search Books"
+          placeholder="Enter Movie Name"
           className=" mr-sm-2"
           value={searchInput}
         onChange= {(e)=>setSearchInput(e.target.value)}

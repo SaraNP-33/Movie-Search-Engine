@@ -15,7 +15,7 @@ function NavbarApp() {
     <>
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand id="brand" as={Link} to='/'>Google Book Search Engine</Navbar.Brand>
+        <Navbar.Brand id="brand" as={Link} to='/'>Movie Search Engine</Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse id="basic-navbar-nav" className='justify-content-end'>
           <Nav>
