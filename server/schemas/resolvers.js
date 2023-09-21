@@ -16,6 +16,7 @@ const resolvers = {
 
   Mutation: {
     addUser: async (parent, args) => {
+      console.log("mutation hit", args);
       const user = await User.create(args);
       const token = signToken(user);
 
@@ -50,7 +51,7 @@ const resolvers = {
 
       throw AuthenticationError;
     },
-    removeBook: async (parent, { movieId }, context) => {
+    removeMovie: async (parent, { movieId }, context) => {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },

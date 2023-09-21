@@ -68,7 +68,8 @@ function LoginForm() {
         <Form.Control type="email" placeholder="name@example.com" 
         required
         onChange={handleInputChange}
-        value={formData.email}/>
+        value={formData.email}
+        name="email"/>
         <Form.Control.Feedback type='invalid'>
           Email is required
         </Form.Control.Feedback>
@@ -78,7 +79,8 @@ function LoginForm() {
         <Form.Control type="password" placeholder="Password" 
         required
         onChange={handleInputChange}
-        value={formData.password}/>
+        value={formData.password}
+        name="password"/>
         <Form.Control.Feedback type='invalid'>
           Password is required
         </Form.Control.Feedback>
