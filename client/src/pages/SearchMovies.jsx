@@ -1,13 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {Row, Col, Form, Button, Container, Card} from 'react-bootstrap'
 
 
-function SearchBooks() {
+function SearchMovies() {
 
     const [searchInput, setSearchInput]= useState('')
     const [searchedBooks, setSearchedBooks]=useState([])
-    console.log(searchedBooks);
-    //`http://www.omdbapi.com/?s=${searchInput}&apikey=90368331`
+    const [brokenLinks, setBrokenLinks] = useState(0)
+   
+    const numberOfResults= searchedBooks.length -brokenLinks
+   
+
+    useEffect(() => {
+      const count = searchedBooks.filter(book => book.image === 'N/A').length;
+      setBrokenLinks(count);
+    }, [searchedBooks]);
 
   const handleSubmit = async (event)=>{
     event.preventDefault()
@@ -32,7 +39,8 @@ function SearchBooks() {
             title:movie.Title,
             image:movie.Poster || " "
         }))
-    
+      //  const cleanBookData= bookData.image ==="N/A" && setBrokenLinks(prev=> prev+1)
+      //  console.log(cleanBookData);
      setSearchedBooks(bookData);
       setSearchInput('');
 
@@ -41,6 +49,7 @@ function SearchBooks() {
       }
 
   }
+  console.log(brokenLinks);
 
   return (
     <>
@@ -65,28 +74,33 @@ function SearchBooks() {
   </div>
 
   <Container>
-    <h2 className='text-center pt-4'>
-      {searchedBooks.length ? `${searchedBooks.length} results from search:` : ''}  
-    </h2>
+    <h3 className='text-center pt-4'>
+      {numberOfResults ? `${numberOfResults} results from search:` : ''}  
+    </h3>
     <Row>
         {searchedBooks.map((book)=>{
+          
             return(
+              <>
+               {book.image !== "N/A" ?(
             <Col md='4' key={book.bookId}>
             <Card>
-                {book.image?(
+                 <div className='img-container'>
                 <Card.Img
                 src={book.image}
                 alt={`${book.title} cover`}
                 variant='top'
                 />
-                ): null}
+                </div> 
                 <Card.Body className='truncate'>
                 <Card.Title className='pe-3 text-center' >{book.title}</Card.Title>
                 <p className='small text-center'>Movie Year: {book.authors}</p>
-                    
+                
                 </Card.Body>
-            </Card>
-            </Col>
+                </Card>
+                </Col>
+                ): null}
+                </>
             )
         })}
     </Row>
@@ -97,4 +111,4 @@ function SearchBooks() {
   );
 }
 
-export default SearchBooks;
+export default SearchMovies;
