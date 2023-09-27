@@ -1,24 +1,24 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button, Card, Modal } from 'react-bootstrap'
 
 function MovieCard({toggleModal, closeModal, showModal, selectedMovieId}){
+    const [movieData, setMovieData] = useState(null);
     console.log(showModal);
     console.log(selectedMovieId);
 
-    
-    const handleOneMovieSearch= async()=>{
-        try{
-          const response= await fetch(`http://www.omdbapi.com/?i=${selectedMovieId}&apikey=90368331`)
-          console.log(`http://www.omdbapi.com/?i=${selectedMovieId}&apikey=90368331`);
-         const oneMovie= await response.json()
-         console.log(oneMovie);
-        }catch(err){
-          console.error(err)
-        }
-    
-      }
+    useEffect(()=>{
+        fetch(`http://www.omdbapi.com/?i=${selectedMovieId}&apikey=90368331`)
+        .then((response)=>response.json())
+        .then(data=> setMovieData(data))
+        .catch(error => console.error(error))
+            
+        
+    },[selectedMovieId])
+    console.log(movieData);
+  
     return(
         <>
+        {movieData ?(
         <Modal
         size='lg'
         show={showModal}
@@ -26,13 +26,14 @@ function MovieCard({toggleModal, closeModal, showModal, selectedMovieId}){
         aria-labelledby='signup-modal'>
          <Modal.Header>
              <Modal.Title>
-                 <h3>This will be the movie title</h3>
+                 <h3>{movieData.Title}</h3>
              </Modal.Title>
          </Modal.Header>
          <Modal.Body>
-             <p>This is where the movie info will be!</p>
+             <p>{movieData.Plot}</p>
          </Modal.Body>
         </Modal>
+        ): ""}
         </>
     )
 }
