@@ -1,20 +1,38 @@
 import { useState, useEffect } from 'react';
-import {Row, Col, Form, Button, Container, Card} from 'react-bootstrap'
+import {Row, Col, Form, Button, Container, Card, Modal} from 'react-bootstrap'
+import MovieCard from '../components/MovieCard'
 
 
 function SearchMovies() {
 
     const [searchInput, setSearchInput]= useState('')
-    const [searchedBooks, setSearchedBooks]=useState([])
+    const [searchedMovies, setSearchedMovies]=useState([])
     const [brokenLinks, setBrokenLinks] = useState(0)
+    const [showModal, setShowModal] = useState(false);
+    const [selectedMovieId, setSelectedMovieId] = useState(null);
    
-    const numberOfResults= searchedBooks.length -brokenLinks
+    const toggleModal = (e) => {
+      setShowModal(prev => !prev);
+      const movieId= e.target.value
+      setSelectedMovieId(movieId)
+
+    }
+    console.log(selectedMovieId);
+    console.log(showModal)
+    const closeModal=()=>{
+      setSelectedMovieId(null)
+      setShowModal(false)
+    }
+
+
+   
+    const numberOfResults= searchedMovies.length -brokenLinks
    
 
     useEffect(() => {
-      const count = searchedBooks.filter(book => book.image === 'N/A').length;
+      const count = searchedMovies.filter(movie => movie.image === 'N/A').length;
       setBrokenLinks(count);
-    }, [searchedBooks]);
+    }, [searchedMovies]);
 
   const handleSubmit = async (event)=>{
     event.preventDefault()
@@ -34,14 +52,14 @@ function SearchMovies() {
         const search=items.Search;
 
         const bookData= search.map((movie)=>({
-            bookId: movie.imdbID,
-            authors:movie.Year || ['No author to display'],
+            movieId: movie.imdbID,
+            year:movie.Year || ['No author to display'],
             title:movie.Title,
             image:movie.Poster || " "
         }))
       //  const cleanBookData= bookData.image ==="N/A" && setBrokenLinks(prev=> prev+1)
       //  console.log(cleanBookData);
-     setSearchedBooks(bookData);
+     setSearchedMovies(bookData);
       setSearchInput('');
 
     }catch (err) {
@@ -50,6 +68,8 @@ function SearchMovies() {
 
   }
   console.log(brokenLinks);
+
+
 
   return (
     <>
@@ -78,24 +98,24 @@ function SearchMovies() {
       {numberOfResults ? `${numberOfResults} results from search:` : ''}  
     </h3>
     <Row>
-        {searchedBooks.map((book)=>{
+        {searchedMovies.map((movie)=>{
           
             return(
               <>
-               {book.image !== "N/A" ?(
-            <Col md='4' key={book.bookId}>
+               {movie.image !== "N/A" ?(
+            <Col md='4' key={movie.movieId}>
             <Card>
                  <div className='img-container'>
                 <Card.Img
-                src={book.image}
-                alt={`${book.title} cover`}
+                src={movie.image}
+                alt={`${movie.title} cover`}
                 variant='top'
                 />
                 </div> 
                 <Card.Body className='truncate'>
-                <Card.Title className='pe-3 text-center' >{book.title}</Card.Title>
-                <p className='small text-center'>Movie Year: {book.authors}</p>
-                
+                <Card.Title className='pe-3 text-center' >{movie.title}</Card.Title>
+                <p className='small text-center'>Movie Year: {movie.year}</p>
+                <Button onClick={toggleModal} value={movie.movieId}>More Info</Button>
                 </Card.Body>
                 </Card>
                 </Col>
@@ -106,8 +126,9 @@ function SearchMovies() {
     </Row>
 
   </Container>
-     
+        <MovieCard closeModal ={closeModal}  showModal={showModal} selectedMovieId={selectedMovieId}/>
     </>
+   
   );
 }
 
