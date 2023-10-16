@@ -12,6 +12,16 @@ font-style: italic;
 font-size: 30px;
 }
 
+.tabs{
+ color: #5e3636;
+}
+.tabs:hover{
+  color:#A05C5C !important;
+}
+.nav.nav-pills .nav-link.active{
+  background-color: #5e3636;
+}
+
 #hero{
   background-image: url("./assets/images/ticket-2974645_1280.jpg");
   background-position: center;
