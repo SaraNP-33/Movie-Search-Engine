@@ -20,17 +20,35 @@ function MovieCard({toggleModal, closeModal, showModal, selectedMovieId}){
         <>
         {movieData ?(
         <Modal
-        size='lg'
+        size='md'
         show={showModal}
         onHide={closeModal}
         aria-labelledby='signup-modal'>
-         <Modal.Header>
-             <Modal.Title>
-                 <h3>{movieData.Title}</h3>
+         <Modal.Header closeButton>
+             <Modal.Title className='text-center modal-title'>
+                 {movieData.Title}
              </Modal.Title>
          </Modal.Header>
          <Modal.Body>
-             <p>{movieData.Plot}</p>
+            <div className="movie-info d-flex">
+              <Card.Img
+                src={movieData.Poster}
+                alt={`${movieData.Title} cover`}
+                variant='top'
+                className='modal-img'
+                />
+                <div className="movie-stats ms-4 ">
+                    <p><span className='stats-title'>Director(s):</span> {movieData.Director}</p>
+                    <p><span className='stats-title'>Writer(s):</span> {movieData.Writer}</p>
+                    <p><span className='stats-title'>Actors:</span> {movieData.Actors}</p>
+                    <p><span className='stats-title'>Genre:</span> {movieData.Genre}</p>
+                    <p><span className='stats-title'>Rated:</span> {movieData.Rated}</p>
+                    <p><span className='stats-title'>IMDB Rating:</span> {movieData.imdbRating}</p>
+                </div>
+            </div>
+                
+                <p className='mt-4'><span className='stats-title'>Plot:</span> {movieData.Plot}</p>
+
          </Modal.Body>
         </Modal>
         ): ""}
@@ -38,4 +56,4 @@ function MovieCard({toggleModal, closeModal, showModal, selectedMovieId}){
     )
 }
 
-export default MovieCard
+export default MovieCard;

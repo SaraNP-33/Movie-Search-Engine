@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&display=swap');
 
 body{
   font-family: 'Anonymous Pro', monospace;
@@ -48,7 +48,7 @@ font-size: 30px;
   width:10%;
 }
 .card{
-  min-height: 679px;
+  min-height: 685px;
   margin: .5rem 0;
 }
 .card-img-top{
@@ -64,8 +64,8 @@ font-size: 30px;
 }
 
 .card-body{
-  min-height: 125px;
-  max-height: 125px;
+  min-height: 145px;
+  max-height: 145px;
   width:414px;
 }
 .card-title{
@@ -76,4 +76,20 @@ font-size: 30px;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.modal-img{
+  height:306px;
+  width:auto;
+}
+
+.stats-title{
+  font-weight: 700;
+}
+
+.modal-title{
+  width:100%
+}
+.info-icon{
+  color:#5e3636;
 }
