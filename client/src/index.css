@@ -37,6 +37,24 @@ font-size: 30px;
 #hero h1{
   color:whitesmoke;
   padding-bottom: 10px;
+  text-shadow: 2px 2px 2px black;
+}
+
+/* saved Movies Page */
+
+#hero2{
+  background-image: url("./assets/images/analogue-2974647_1280.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 450px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+#hero2 h1{
+  color:whitesmoke;
+  text-shadow: 2px 2px 2px black;
 }
 
 /*Input button */

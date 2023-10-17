@@ -2,7 +2,11 @@
 
 function SavedMovies (){
     return(
-        <h1>Saved Movies</h1>
+        <>
+        <div id="hero2">
+            <h1>Saved Movies</h1>
+        </div>
+        </>
     )
 }
 
