@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Button, Card, Modal } from 'react-bootstrap'
+import { Button, Card, Modal } from 'react-bootstrap';
+import Auth from '../utils/auth';
 
 function MovieCard({toggleModal, closeModal, showModal, selectedMovieId}){
     const [movieData, setMovieData] = useState(null);
@@ -48,7 +49,7 @@ function MovieCard({toggleModal, closeModal, showModal, selectedMovieId}){
             </div>
                 
                 <p className='mt-4'><span className='stats-title'>Plot:</span> {movieData.Plot}</p>
-
+                
          </Modal.Body>
         </Modal>
         ): ""}
