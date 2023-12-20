@@ -8,13 +8,14 @@ import {
   Card,
   Modal,
 } from "react-bootstrap";
-import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+//import { library } from "@fortawesome/fontawesome-svg-core";
 import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import MovieCard from "../components/MovieCard";
 
-library.add(faCircleInfo);
+// library.add(faCircleInfo);
 
 function SearchMovies() {
   const [searchInput, setSearchInput] = useState("");
@@ -131,7 +132,7 @@ function SearchMovies() {
                         </p>
                         <div onClick={() => toggleModal(movie.movieId)}>
                           <FontAwesomeIcon
-                            icon="fa-solid fa-circle-info"
+                            icon={faCircleInfo}
                             size="2x"
                             className="info-icon"
                           />
